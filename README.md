@@ -17,7 +17,7 @@ TimeSeries-Forecaster-AI is a lightweight but complete forecasting pipeline comb
 This project demonstrates a modern and automated Python workflow suitable for real-world time-series analysis.
 
 ## Project Structure
-
+```
 TimeSeries-Forecaster-AI/
 ├── data/
 │ └── gld_price_data.csv
@@ -30,7 +30,7 @@ TimeSeries-Forecaster-AI/
 ├── pyproject.toml # Poetry configuration
 ├── LICENSE # MIT License
 └── README.md # Project documentation
-
+```
 ## Features
 
 - Load & clean time-series financial data  
