@@ -1,103 +1,74 @@
-# TimeSeries Forecaster AI
-# Automatic Time Series Forecasting Tool using ARIMA and GARCH Models
-# Author: Jouini Saief Eddine
+# TimeSeries-Forecaster-AI  
+Automatic ARIMA + GARCH forecasting pipeline using Python & Poetry
 
-## Project Description  
-This project implements a **time series forecasting system** based on:  
-- **ARIMA** to model temporal trends and structure,  
-- **GARCH** to model volatility and dynamic variance,  
-- and **Poetry** as a modern build and dependency management tool.
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Python](https://img.shields.io/badge/Python-3.10-blue.svg)
+![Build](https://img.shields.io/badge/Build-Poetry-informational.svg)
 
-The goal is to demonstrate full project automation with Poetry while applying advanced statistical models for financial time series prediction.
+## Overview
 
-## Project Structure  
+TimeSeries-Forecaster-AI is a lightweight but complete forecasting pipeline combining:
+
+- **ARIMA models** (trend + autocorrelation)
+- **GARCH models** (volatility modeling)
+- **Poetry** as build & dependency manager
+- **Logging**, **unit tests**, and **debugging support**
+
+This project demonstrates a modern and automated Python workflow suitable for real-world time-series analysis.
+
+## Project Structure
 
 TimeSeries-Forecaster-AI/
 ├── data/
-│ └── gld_price_data.csv ← Dataset used for modeling
+│ └── gld_price_data.csv
 ├── src/
-│ ├── init.py
-│ ├── preprocess.py ← Data loading and preprocessing
-│ ├── models.py ← ARIMA and GARCH model implementation
-│ ├── visualize.py ← Forecast visualization
-│ └── main.py ← Main entry point
-├── tests/ ← Empty for now 
-├── pyproject.toml ← Poetry configuration and metadata
-└── README.md
+│ ├── preprocess.py # Data loading & cleaning
+│ ├── models.py # ARIMA/GARCH models
+│ ├── visualize.py # Forecast plot
+│ └── main.py # Pipeline entry point
+├── tests/ # Pytest unit tests
+├── pyproject.toml # Poetry configuration
+├── LICENSE # MIT License
+└── README.md # Project documentation
 
-## How to build
-### Step 1 — Install Poetry
-Install Poetry globally (once on your machine):
+## Features
+
+- Load & clean time-series financial data  
+- Train ARIMA(p,d,q) models  
+- Train GARCH(p,q) volatility models  
+- Combined forecasting  
+- Logging at all levels (INFO/DEBUG/WARNING/ERROR)  
+- Unit tests using Pytest  
+- Debugger-friendly code  
+- Poetry-based environment
+
+## Installation
+
+### 1. Install Poetry
 ```
-pip install poetry```
-
-Check that Poetry is installed:
-
-```poetry --version```
-### Step 2 — Create the Project
-
-Move to your working directory and Create the project folder:
+pip install poetry
 ```
-mkdir TimeSeries-Forecaster-AI
-cd TimeSeries-Forecaster-AI```
-
-Initialize a Poetry project:
+### 2. Install dependencies
 ```
-poetry init```
-
-When prompted, add the dependencies manually later (see below).
-
-### Step 3 — Add Dependencies
-
-Install all required libraries through Poetry:
-
-```poetry add pandas numpy matplotlib seaborn statsmodels arch```
-
-This automatically updates pyproject.toml with the proper dependency versions and creates a virtual environment.
-
-### Step 4 — Project Implementation
-
-Inside the src/ folder, create the following files:
-
-| File           | Description                                                |
-|----------------|------------------------------------------------------------|
-| preprocess.py  | Reads the CSV, sets Date as index, cleans missing values   |
-| models.py      | Defines `fit_arima()`, `fit_garch()`, and `forecast_combined()` |
-| visualize.py   | Displays forecast results using Matplotlib                 |
-| main.py        | Combines all modules and runs the pipeline                 |
-
-### Step 5 — Build the Project
-
-Once the code is ready, build the package automatically with Poetry:
+poetry install
 ```
-poetry build```
-
-This step compiles your code and generates distributable packages containing:
-project metadata (name, version, license, author),all dependencies declared in pyproject.toml.
-
-### Step 6 — Run the Project
-
-To execute the project inside the Poetry environment:
+### 3. Usage
+Run the full forecasting pipeline:
 ```
-poetry run python src/main.py```
-
+poetry run python src/main.py
+```
 This will:
-Load the dataset data/gld_price_data.csv,
-Fit an ARIMA(2,0,3) model on the gold price series,
-Apply a GARCH(1,1) model on residuals,
-Forecast the next 20 values,
-Display a Matplotlib window with real (blue) and predicted (red) series,
-Print ARIMA and GARCH summaries in the terminal.
+Load the dataset
+Train ARIMA(2,0,3)
+Train GARCH(1,1)
+Forecast 20 future values
+Display plots
+Print statistical summaries
 
-Example terminal output:
 
-ARIMA Summary:
-SARIMAX Results
-Dep. Variable: GLD
-...
+## License
+This project is released under the MIT License.
 
-GARCH Summary:
-Mean Model: ARIMA(2,0,3)
-Volatility Model: GARCH(1,1)
-...
+
+
 
