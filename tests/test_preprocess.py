@@ -1,5 +1,5 @@
 import pandas as pd
-from preprocess import load_time_series
+from src.preprocess import load_time_series
 import pytest
 
 

@@ -1,5 +1,5 @@
 import pandas as pd
-from models import fit_arima, fit_garch
+from src.models import fit_arima, fit_garch
 
 
 def test_fit_arima():

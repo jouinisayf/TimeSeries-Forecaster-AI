@@ -6,6 +6,43 @@ logger = logging.getLogger("TimeSeriesForecaster")
 
 
 def load_time_series(path, column="GLD"):
+    """
+    Load and clean a financial time series from a CSV file.
+
+    The function:
+    - loads a CSV file containing a date column and financial indicators
+    - converts the selected column to numeric
+    - sets the "Date" column as index
+    - removes invalid or missing values
+    - logs detailed steps for debugging and traceability
+
+    Parameters
+    ----------
+    path : str
+        Path to the CSV dataset.
+    column : str, optional
+        Name of the column to extract as a time series (default is "GLD").
+
+    Returns
+    -------
+    pandas.Series
+        A cleaned time series indexed by date.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the provided file path does not exist.
+    ValueError
+        If the column does not exist in the dataset.
+
+    Notes
+    -----
+    Logging Levels used:
+        - INFO: loading steps and final dataset size
+        - DEBUG: head of raw DataFrame before cleaning
+        - WARNING: number of removed missing values
+        - CRITICAL: missing file error before raising exception
+    """
     logger.info(f"Loading dataset from {path}")
 
     if not os.path.exists(path):
