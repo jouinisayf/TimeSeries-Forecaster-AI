@@ -31,4 +31,4 @@ jobs:
         run: poetry run pytest
         
       - name: Run code style analysis (flake8)
-        run: poetry run flake8 src
+        run: poetry run flake8 src --config=.flake8
