@@ -1,0 +1,113 @@
+name: Release (tag)
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: Tests (matrix)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run code style analysis (flake8)
+        run: poetry run flake8 src
+
+      - name: Run unit tests
+        run: poetry run pytest
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout repository (full history for tags)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute previous tag
+        id: prevtag
+        shell: bash
+        run: |
+          set -e
+          git fetch --tags --force
+          PREV_TAG=$(git tag --sort=-creatordate | sed -n '2p')
+          echo "prev_tag=$PREV_TAG" >> $GITHUB_OUTPUT
+
+      - name: Generate changelog from git history
+        id: changelog
+        shell: bash
+        run: |
+          set -e
+          CURRENT_TAG="${GITHUB_REF_NAME}"
+          PREV_TAG="${{ steps.prevtag.outputs.prev_tag }}"
+
+          echo "Current tag: $CURRENT_TAG"
+          echo "Previous tag: $PREV_TAG"
+
+          if [ -z "$PREV_TAG" ]; then
+            RANGE=""
+            echo "No previous tag found. Using full history."
+          else
+            RANGE="$PREV_TAG..$CURRENT_TAG"
+          fi
+
+          {
+            echo "## Changelog"
+            echo ""
+            if [ -z "$RANGE" ]; then
+              git log --pretty=format:"- %s (%h)" --no-merges
+            else
+              git log $RANGE --pretty=format:"- %s (%h)" --no-merges
+            fi
+            echo ""
+          } > CHANGELOG.md
+
+          echo "changelog_path=CHANGELOG.md" >> $GITHUB_OUTPUT
+
+      - name: Build release artifact (zip)
+        shell: bash
+        run: |
+          set -e
+          TAG="${GITHUB_REF_NAME}"
+          ARTIFACT="TimeSeries-Forecaster-AI-${TAG}.zip"
+
+          mkdir -p dist
+          zip -r "dist/${ARTIFACT}" . \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x ".venv/*" \
+            -x "__pycache__/*" \
+            -x "*.pyc" \
+            -x "dist/*"
+
+          echo "Artifact created: dist/${ARTIFACT}"
+
+      - name: Create GitHub Release and upload artifact
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: ${{ steps.changelog.outputs.changelog_path }}
+          files: dist/*.zip
