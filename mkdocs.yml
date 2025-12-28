@@ -1,0 +1,9 @@
+site_name: TimeSeries-Forecaster-AI
+site_description: Automatic ARIMA + GARCH forecasting pipeline
+site_author: Saief Eddine JOUINI
+
+nav:
+  - Home: index.md
+
+theme:
+  name: readthedocs
