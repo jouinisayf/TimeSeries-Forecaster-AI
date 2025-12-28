@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Automatic ARIMA + GARCH forecasting pipeline" /><meta name="author" content="Saief Eddine JOUINI" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>TimeSeries-Forecaster-AI</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> TimeSeries-Forecaster-AI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-install-poetry">1. Install Poetry</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-install-dependencies">2. Install dependencies</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-usage">3. Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#license">License</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">TimeSeries-Forecaster-AI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="timeseries-forecaster-ai">TimeSeries-Forecaster-AI</h1>
+<p>Automatic ARIMA + GARCH forecasting pipeline using Python &amp; Poetry</p>
+<p><img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg" />
+<img alt="Python" src="https://img.shields.io/badge/Python-3.10-blue.svg" />
+<img alt="Build" src="https://img.shields.io/badge/Build-Poetry-informational.svg" /></p>
+<h2 id="overview">Overview</h2>
+<p>TimeSeries-Forecaster-AI is a lightweight but complete forecasting pipeline combining:</p>
+<ul>
+<li><strong>ARIMA models</strong> (trend + autocorrelation)</li>
+<li><strong>GARCH models</strong> (volatility modeling)</li>
+<li><strong>Poetry</strong> as build &amp; dependency manager</li>
+<li><strong>Logging</strong>, <strong>unit tests</strong>, and <strong>debugging support</strong></li>
+</ul>
+<p>This project demonstrates a modern and automated Python workflow suitable for real-world time-series analysis.</p>
+<h2 id="project-structure">Project Structure</h2>
+<pre><code>TimeSeries-Forecaster-AI/
+├── data/
+│ └── gld_price_data.csv
+├── src/
+│ ├── preprocess.py # Data loading &amp; cleaning
+│ ├── models.py # ARIMA/GARCH models
+│ ├── visualize.py # Forecast plot
+│ └── main.py # Pipeline entry point
+├── tests/ # Pytest unit tests
+├── pyproject.toml # Poetry configuration
+├── LICENSE # MIT License
+└── README.md # Project documentation
+</code></pre>
+<h2 id="features">Features</h2>
+<ul>
+<li>Load &amp; clean time-series financial data  </li>
+<li>Train ARIMA(p,d,q) models  </li>
+<li>Train GARCH(p,q) volatility models  </li>
+<li>Combined forecasting  </li>
+<li>Logging at all levels (INFO/DEBUG/WARNING/ERROR)  </li>
+<li>Unit tests using Pytest  </li>
+<li>Debugger-friendly code  </li>
+<li>Poetry-based environment</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<h3 id="1-install-poetry">1. Install Poetry</h3>
+<pre><code>pip install poetry
+</code></pre>
+<h3 id="2-install-dependencies">2. Install dependencies</h3>
+<pre><code>poetry install
+</code></pre>
+<h3 id="3-usage">3. Usage</h3>
+<p>Run the full forecasting pipeline:</p>
+<pre><code>poetry run python src/main.py
+</code></pre>
+<p>This will:
+Load the dataset
+Train ARIMA(2,0,3)
+Train GARCH(1,1)
+Forecast 20 future values
+Display plots
+Print statistical summaries</p>
+<h2 id="license">License</h2>
+<p>This project is released under the MIT License.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-12-28 20:34:32.466381+00:00
+-->
